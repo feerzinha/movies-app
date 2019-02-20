@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.arctouch.codechallenge.R;
 import com.arctouch.codechallenge.model.Movie;
+import com.arctouch.codechallenge.util.GlideUtils;
 import com.arctouch.codechallenge.util.MovieImageUrlBuilder;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -20,9 +21,11 @@ import java.util.List;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     private List<Movie> movies;
+    private ItemClickListener itemClickListener;
 
-    public HomeAdapter(List<Movie> movies) {
+    public HomeAdapter(List<Movie> movies, ItemClickListener itemClickListener) {
         this.movies = movies;
+        this.itemClickListener = itemClickListener;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -48,11 +51,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             releaseDateTextView.setText(movie.releaseDate);
 
             String posterPath = movie.posterPath;
-            if (TextUtils.isEmpty(posterPath) == false) {
-                Glide.with(itemView)
-                        .load(movieImageUrlBuilder.buildPosterUrl(posterPath))
-                        .apply(new RequestOptions().placeholder(R.drawable.ic_image_placeholder))
-                        .into(posterImageView);
+            if (!TextUtils.isEmpty(posterPath)) {
+                GlideUtils.requestGlide(itemView.getContext(), movieImageUrlBuilder.buildPosterUrl(posterPath), posterImageView, new RequestOptions());
             }
         }
     }
@@ -71,6 +71,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(movies.get(position));
+        final Movie movie = movies.get(position);
+        holder.bind(movie);
+
+        holder.itemView.setOnClickListener(view -> itemClickListener.onItemClick(movie));
+    }
+
+    public interface ItemClickListener {
+
+        void onItemClick(Movie movie);
+
     }
 }
