@@ -12,16 +12,14 @@
         android:scaleType="center"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/posterImageView"
+        android:layout_marginTop="@dimen/default_margin">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/default_margin"
-            android:layout_below="@+id/posterImageView">
+        <include layout="@layout/details_container" />
 
-            <include layout="@layout/details_container" />
-
-        </ScrollView>
-
+    </ScrollView>
 
 </RelativeLayout>

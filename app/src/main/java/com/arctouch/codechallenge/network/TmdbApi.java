@@ -1,4 +1,4 @@
-package com.arctouch.codechallenge.api;
+package com.arctouch.codechallenge.network;
 
 import com.arctouch.codechallenge.model.GenreResponse;
 import com.arctouch.codechallenge.model.Movie;
@@ -26,8 +26,7 @@ public interface TmdbApi {
     Observable<UpcomingMoviesResponse> upcomingMovies(
             @Query("api_key") String apiKey,
             @Query("language") String language,
-            @Query("page") Long page,
-            @Query("region") String region
+            @Query("page") int page
     );
 
     @GET("movie/{id}")

@@ -14,12 +14,11 @@
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:scaleType="center"
             android:layout_marginBottom="@dimen/default_margin"
+            android:scaleType="center"
             tools:srcCompat="@tools:sample/avatars" />
 
-            <include layout="@layout/details_container" />
-
+        <include layout="@layout/details_container" />
 
     </LinearLayout>
 

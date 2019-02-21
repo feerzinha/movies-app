@@ -4,6 +4,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -12,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.arctouch.codechallenge.R;
-import com.arctouch.codechallenge.base.BaseActivity;
 import com.arctouch.codechallenge.model.Movie;
 import com.arctouch.codechallenge.util.ColorUtils;
 import com.arctouch.codechallenge.util.GlideUtils;
@@ -20,7 +20,7 @@ import com.arctouch.codechallenge.util.MovieImageUrlBuilder;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
-public class DetailsActivity extends BaseActivity {
+public class DetailsActivity extends AppCompatActivity {
 
     public static final String MOVIE_EXTRA = "movie";
 
