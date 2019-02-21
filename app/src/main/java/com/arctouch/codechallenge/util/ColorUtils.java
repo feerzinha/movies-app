@@ -5,7 +5,8 @@ import android.graphics.Color;
 public class ColorUtils {
 
     /**
-     * https://stackoverflow.com/questions/33072365/how-to-darken-a-given-color-int
+     * Manipulate color
+     * reference: https://stackoverflow.com/questions/33072365/how-to-darken-a-given-color-int
      * @param color color provided
      * @param factor factor to make color darker
      * @return int as darker color

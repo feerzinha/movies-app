@@ -51,7 +51,6 @@ public class HomeAdapter extends PagedListAdapter<Movie, HomeAdapter.MovieViewHo
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
         final Movie movie = getItem(position);
         holder.bind(movie);
-
         holder.itemView.setOnClickListener(view -> itemClickListener.onItemClick(movie));
     }
 

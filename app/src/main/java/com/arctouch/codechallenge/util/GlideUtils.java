@@ -15,6 +15,13 @@ import com.bumptech.glide.request.target.Target;
 
 public class GlideUtils {
 
+    /**
+     * Make request to glide to load url image to the layout ImageView.
+     * @param context Context to be used
+     * @param url Image url to be loaded
+     * @param view ImageView that will display the image
+     * @param options RequestOptions for config glide loading request
+     */
     public static void requestGlide(Context context, String url, ImageView view, RequestOptions options) {
         Glide.with(context)
                 .load(url)
@@ -22,11 +29,19 @@ public class GlideUtils {
                 .into(view);
     }
 
-    public static void requestGlideWithListener(Context context, String url, ImageView view, RequestOptions option, GlideUtilsListener glideUtilsListener) {
+    /**
+     * Make request to glide to load url image to the layout ImageView.
+     * @param context Context to be used
+     * @param url Image url to be loaded
+     * @param view ImageView that will display the image
+     * @param options RequestOptions for config glide loading request
+     * @param glideUtilsListener GlideUtilsListener to listen glide request return
+     */
+    public static void requestGlideWithListener(Context context, String url, ImageView view, RequestOptions options, GlideUtilsListener glideUtilsListener) {
         Glide.with(context)
                 .asBitmap()
                 .load(url)
-                .apply(option.placeholder(R.drawable.ic_image_placeholder))
+                .apply(options.placeholder(R.drawable.ic_image_placeholder))
                 .listener(new RequestListener<Bitmap>() {
 
                     @Override

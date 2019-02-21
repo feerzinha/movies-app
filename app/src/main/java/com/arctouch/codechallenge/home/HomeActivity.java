@@ -9,11 +9,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.arctouch.codechallenge.R;
-import com.arctouch.codechallenge.detail.DetailsActivity;
+import com.arctouch.codechallenge.details.DetailsActivity;
 import com.arctouch.codechallenge.model.Movie;
 import com.arctouch.codechallenge.model.MovieViewModel;
 
-import static com.arctouch.codechallenge.detail.DetailsActivity.MOVIE_EXTRA;
+import static com.arctouch.codechallenge.details.DetailsActivity.MOVIE_EXTRA;
+
 
 public class HomeActivity extends AppCompatActivity implements HomeAdapter.ItemClickListener {
 

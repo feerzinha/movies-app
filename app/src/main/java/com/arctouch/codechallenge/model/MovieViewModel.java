@@ -14,7 +14,6 @@ public class MovieViewModel extends ViewModel {
     public LiveData<PageKeyedDataSource<Integer, Movie>> liveDataSource;
 
     public MovieViewModel() {
-
         MovieDataSourceFactory itemDataSourceFactory = new MovieDataSourceFactory();
         liveDataSource = itemDataSourceFactory.getItemLiveDataSource();
 

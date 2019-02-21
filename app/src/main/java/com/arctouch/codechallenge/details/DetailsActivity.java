@@ -1,4 +1,4 @@
-package com.arctouch.codechallenge.detail;
+package com.arctouch.codechallenge.details;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
