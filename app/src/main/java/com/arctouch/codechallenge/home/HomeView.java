@@ -8,4 +8,6 @@ public interface HomeView {
 
     void showMovies(PagedList<Movie> items);
 
+    void hideLoading();
+
 }

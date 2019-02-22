@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.arctouch.codechallenge.R;
 import com.arctouch.codechallenge.details.DetailsActivity;
@@ -19,11 +21,22 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.ItemC
 
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
+
+        setupUI();
+
+        HomePresenter presenter = new HomePresenter(this,this);
+        presenter.getMovies();
+    }
+
+    private void setupUI() {
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -31,9 +44,6 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.ItemC
 
         adapter = new HomeAdapter(this, this);
         recyclerView.setAdapter(adapter);
-
-        HomePresenter presenter = new HomePresenter(this,this);
-        presenter.getMovies();
     }
 
     @Override
@@ -45,7 +55,11 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.ItemC
 
     @Override
     public void showMovies(PagedList<Movie> items) {
-
         adapter.submitList(items);
+    }
+
+    @Override
+    public void hideLoading() {
+        progressBar.setVisibility(View.GONE);
     }
 }
