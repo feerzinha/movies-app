@@ -10,6 +10,7 @@ import com.arctouch.codechallenge.network.RetrofitClient;
 
 import java.util.ArrayList;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class MovieDataSource extends PageKeyedDataSource<Integer, Movie> {
@@ -19,6 +20,18 @@ public class MovieDataSource extends PageKeyedDataSource<Integer, Movie> {
 
     @Override
     public void loadInitial(@NonNull LoadInitialParams<Integer> params, @NonNull LoadInitialCallback<Integer, Movie> callback) {
+        RetrofitClient.getInstance()
+                .getTmdbApi().genres(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    Cache.setGenres(response.genres);
+
+                    requestMoviesInitial(callback, FIRST_PAGE + 1);
+                });
+    }
+
+    private void requestMoviesInitial(@NonNull LoadInitialCallback<Integer, Movie> callback, int nextPage) {
         RetrofitClient.getInstance()
                 .getTmdbApi().upcomingMovies(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE, FIRST_PAGE)
                 .subscribeOn(Schedulers.io())
@@ -33,7 +46,7 @@ public class MovieDataSource extends PageKeyedDataSource<Integer, Movie> {
                             }
                         }
 
-                        callback.onResult(response.results, null, FIRST_PAGE + 1);
+                        callback.onResult(response.results, null, nextPage);
                     }
                 });
     }

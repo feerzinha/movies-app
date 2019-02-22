@@ -10,4 +10,6 @@ public interface HomeView {
 
     void hideLoading();
 
+    void showLoading();
+
 }

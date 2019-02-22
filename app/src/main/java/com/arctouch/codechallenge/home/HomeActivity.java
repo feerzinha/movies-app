@@ -36,7 +36,6 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.ItemC
 
     private void setupUI() {
         progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.VISIBLE);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -56,10 +55,16 @@ public class HomeActivity extends AppCompatActivity implements HomeAdapter.ItemC
     @Override
     public void showMovies(PagedList<Movie> items) {
         adapter.submitList(items);
+        hideLoading();
     }
 
     @Override
     public void hideLoading() {
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showLoading() {
+        progressBar.setVisibility(View.VISIBLE);
     }
 }
